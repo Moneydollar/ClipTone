@@ -1,4 +1,4 @@
-# YouTube Audio Downloader
+# Video to Audio Downloader
 
 Video to Audio Downloader is a simple Python application that allows you to download audio from YouTube videos. You can enter the link of the video you want to download, and the application will convert it to an MP3 audio file.
 
@@ -23,3 +23,7 @@ Video to Audio Downloader is a simple Python application that allows you to down
 ## Troubleshooting
 
 - Sometimes, the file will download only as a video, this is because the video is not avaliable in a compatiable format for the application to download. This is a rare occurance, but if it happens, you can try to download the video again from a diffrent link. 
+
+## DISCLAIMER
+
+This application is for educational purposes only. I (the author) do not condone the use of this application for any illegal activities. I am not responsible for any misuse of this application. Please support creators by purchasing their products. This application is not affiliated with YouTube or any other video hosting website. This software is intended to be used in compliance with the Terms of Use of the video hosting websites. I am not responsible for the content you download with this application.
