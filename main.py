@@ -14,7 +14,7 @@ class videoDownloader:
         tk.Tk.iconbitmap(self.root, default=self.icon)
         self.width = width
         self.title = title
-        self.root.title("YouTube Audio Downloader")
+        self.root.title("Video to Audio Downloader")
         self.root.geometry(f"{self.height}x{self.width}")
         # Create a entry box
         self.entry_box = tk.Entry(self.root, background="#ebe694", font="Helvetica 12")
@@ -22,7 +22,7 @@ class videoDownloader:
 
         # Create a label
         self.label = tk.Label(
-            self.root, text="Enter the YouTube link to the music you want to download"
+            self.root, text="Enter the video link to the audio you want to download"
         )
         self.label.pack(pady=10)
         self.entry_box.bind("<Return>", self.on_enter_pressed)

@@ -16,9 +16,9 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(
-    name="YouTube Audio Downloader",
+    name="Video to Audio Downloader",
     version="1.0.0",
-    description="Simple Python YouTube Audio Downloader",
+    description="Simple Python Video Audio Downloader and Converter",
     author="Cash E. Coffman",
     author_email="",
     options={
