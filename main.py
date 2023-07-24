@@ -92,6 +92,8 @@ class videoDownloader:
         output_audio = os.path.join(new_directory, f"{videoTitle}.mp3")
         processed_Audio = None
 
+        #TODO: Add a case for when the video file is not passed to ffmpeg properly, so that another file can be passed (set the loop to 0)
+        
         try:
             ffmpeg.input(video_file_path).output(
                 output_audio, codec="mp3", ac="2", ar="44100"
