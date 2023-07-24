@@ -16,13 +16,13 @@ Video to Audio Downloader is a simple Python application that allows you to down
 
 ## Installation
 
-#  Via .7z Folder
+### Via .7z Folder
 
 - Download the latest release from the [releases page]
 - Extract the contents of the zip file to a folder of your choice
 - Run the main.exe file
 
-# Via MSI Installer
+### Via MSI Installer
 
 - Download and execute the installer
 - Choose a directory for Video to Audio Downloader to install
