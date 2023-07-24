@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 setup(
     name="Video to Audio Downloader",
-    version="1.0.0",
+    version="1.1.1",
     description="Simple Python Video Audio Downloader and Converter",
     author="Cash E. Coffman",
     author_email="",
