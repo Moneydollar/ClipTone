@@ -4,7 +4,7 @@ Video to Audio Downloader is a simple Python application that allows you to down
 
 ## Features
 
-- Download audio from videos as MP3 files.
+- Download audio from videos as lossless WAV files or lossy MP3 files.
 - Simple and easy-to-use user interface.
 - Also allows downloading videos from many sites
 
@@ -35,6 +35,7 @@ Video to Audio Downloader is a simple Python application that allows you to down
 - If you encounter issues with the installer or the 7zip method of installation, try the other method of installation, if that fails please submit an issue to this repo.
 - If you don't have 7zip installed, you can download it free from [here](https://www.7-zip.org/). Just select the download that is applicable to your system, and follow the installation process.
 - Depending on the speed of your internet connection and the length of the video you are downloading, the download process may take a while, be patient.
+- You must select a format to download the video in, if you don't, the application will not download the video.
   
 
 <h2 style="color: red;">DISCLAIMER ⚠️</h2>
