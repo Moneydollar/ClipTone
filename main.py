@@ -1,9 +1,9 @@
 import tkinter as tk
-import yt_dlp
-import os
+import yt_dlp.YoutubeDL
+from os import path, remove
 import ffmpeg
-import subprocess
-import threading  # For multithreading
+from subprocess import run
+from threading import Thread  # For multithreading
 
 
 class videoDownloader:
@@ -14,20 +14,26 @@ class videoDownloader:
         self.isDownloading = False
         self.loop_times = 0
         self.height = height
-        self.icon = "assets/icon.ico"
-        tk.Tk.iconbitmap(self.root, default=self.icon)
         self.width = width
         self.title = title
+        self.icon16 = tk.PhotoImage(file="assets/icon16.png")
+        self.icon24 = tk.PhotoImage(file="assets/icon24.png")
+        self.icon32 = tk.PhotoImage(file="assets/icon32.png")
+        self.root.iconphoto(False, self.icon24, self.icon32)
+        tk.Tk.iconbitmap(self.root, default="assets/icon64.ico")
+        self.root.configure(background="#f3f3f3")
         self.root.title("ClipTone")
         self.root.geometry(f"{self.height}x{self.width}")
 
         # Create a entry box
         self.entry_box = tk.Entry(self.root, background="#ebe694", font="Helvetica 12")
         self.entry_box.pack(pady=10)
+        
 
         # Create a frame to hold the radio buttons and pack it to the top
         radio_frame = tk.Frame(self.root)
         radio_frame.pack(pady=10)
+        radio_frame.configure(background="#f3f3f3")
 
         # Radio button for selecting Lossy downloads
         dummy_radio_button = tk.Radiobutton(radio_frame, text="", value="dummy")
@@ -36,18 +42,23 @@ class videoDownloader:
             radio_frame, text="Lossy", value=1, command=self.onLossySelect
         )
         self.lossyButton.pack(side=tk.LEFT, padx=5)  # Place on the left side
+        self.lossyButton.configure(background="#f3f3f3")
 
         # Radio button for selecting Lossless downloads.
         self.losslessButton = tk.Radiobutton(
             radio_frame, text="Lossless", value=2, command=self.onLosslessSelect
         )
-        self.losslessButton.pack(side=tk.LEFT, padx=5)  # Place on the left side
+        self.losslessButton.pack(
+            side=tk.LEFT, padx=5
+        )  # Place on the left side on previous button
+        self.losslessButton.configure(background="#f3f3f3")
 
         # Create a label
         self.label = tk.Label(
             self.root, text="Enter the video link to the audio you want to download"
         )
         self.label.pack(pady=10)
+        self.label.configure(background="#f3f3f3")
         self.open_button = tk.Button(
             text="View Downloaded Audio", command=self.open_directory
         )
@@ -59,6 +70,7 @@ class videoDownloader:
         self.exit_button = tk.Button(self.root, text="Exit", command=self.on_closing)
         self.exit_button.pack(pady=10)
         self.download_label = tk.Label(self.root, text="Ready to Download")
+        self.download_label.configure(background="#f3f3f3")
         self.download_label.pack(pady=10)
 
     def get_song(self):
@@ -66,9 +78,9 @@ class videoDownloader:
         return song
 
     def open_directory(self):
-        home = os.path.expanduser("~")
-        new_directory = os.path.join(home, "ffmpeg_downloads")
-        subprocess.run(f"explorer {new_directory}")
+        home = path.expanduser("~")
+        new_directory = path.join(home, "ffmpeg_downloads")
+        run(f"explorer {new_directory}")
         pass
 
     # NOTE:: 'event' paramerer is required for this function to work. The bind method returens an event object, which is passed to this function.
@@ -79,17 +91,21 @@ class videoDownloader:
         if self.isDownloading and self.loop_times == 0:
             if self.isLossy == True and self.isLossless == False:
                 try:
-                    self.download_label.config(text="Downloading... Please Wait")
-                    threading.Thread(target=self.getLossyAudio).start()
+                    self.download_label.configure(text="Downloading... Please Wait")
+                    Thread(target=self.getLossyAudio).start()
                 except yt_dlp.utils.DownloadError:
-                    self.download_label.config(text="Download Failed, Link is Invalid")
+                    self.download_label.configure(
+                        text="Download Failed, Link is Invalid"
+                    )
                 self.loop_times += 1
             elif self.isLossy == False and self.isLossless == True:
                 try:
-                    self.download_label.config(text="Downloading... Please Wait")
-                    threading.Thread(target=self.getLosslessAudio).start()
+                    self.download_label.configure(text="Downloading... Please Wait")
+                    Thread(target=self.getLosslessAudio).start()
                 except yt_dlp.utils.DownloadError:
-                    self.download_label.config(text="Download Failed, Link is Invalid")
+                    self.download_label.configure(
+                        text="Download Failed, Link is Invalid"
+                    )
                 self.loop_times += 1
         elif self.isLossy == None and self.isLossless == None:
             self.label.config(text="Please select either Lossy or Lossless")
@@ -118,9 +134,9 @@ class videoDownloader:
     #     self.root.update()
 
     def getLossyAudio(self):
-        home = os.path.expanduser("~")
-        new_directory = os.path.join(home, "ffmpeg_downloads")
-        ydl_opts = {"outtmpl": os.path.join(new_directory, "%(title)s.%(ext)s")}
+        home = path.expanduser("~")
+        new_directory = path.join(home, "ffmpeg_downloads")
+        ydl_opts = {"outtmpl": path.join(new_directory, "%(title)s.%(ext)s")}
         ydl = yt_dlp.YoutubeDL(ydl_opts)
         videoLink = self.get_song()
         ydl.download(
@@ -132,8 +148,8 @@ class videoDownloader:
         videoTitle = videoTitle.replace("/", "\\")
         videoExt = videoInfo.get("ext")
 
-        video_file_path = os.path.join(new_directory, f"{videoTitle}.{videoExt}")
-        output_audio = os.path.join(new_directory, f"{videoTitle}.mp3")
+        video_file_path = path.join(new_directory, f"{videoTitle}.{videoExt}")
+        output_audio = path.join(new_directory, f"{videoTitle}.mp3")
         processed_Audio = None
 
         try:
@@ -145,21 +161,21 @@ class videoDownloader:
             print("FFmpeg error:")
             print(e.stderr)
 
-        if os.path.isfile(video_file_path):
+        if path.isfile(video_file_path):
             self.download_label.config(text="Download Complete")
         self.entry_box.delete(0, tk.END)
         self.download_label.config(
             text="Download Complete, Ready to Process another Video"
         )  # Update the label
-        os.remove(video_file_path)
+        remove(video_file_path)
         self.isDownloading = False
         self.loop_times = 0
         return processed_Audio
 
     def getLosslessAudio(self):
-        home = os.path.expanduser("~")
-        new_directory = os.path.join(home, "ffmpeg_downloads")
-        ydl_opts = {"outtmpl": os.path.join(new_directory, "%(title)s.%(ext)s")}
+        home = path.expanduser("~")
+        new_directory = path.join(home, "ffmpeg_downloads")
+        ydl_opts = {"outtmpl": path.join(new_directory, "%(title)s.%(ext)s")}
         ydl = yt_dlp.YoutubeDL(ydl_opts)
         videoLink = self.get_song()
         ydl.download(
@@ -171,8 +187,8 @@ class videoDownloader:
         videoTitle = videoTitle.replace("/", "\\")
         videoExt = videoInfo.get("ext")
 
-        video_file_path = os.path.join(new_directory, f"{videoTitle}.{videoExt}")
-        output_audio = os.path.join(new_directory, f"{videoTitle}.wav")
+        video_file_path = path.join(new_directory, f"{videoTitle}.{videoExt}")
+        output_audio = path.join(new_directory, f"{videoTitle}.wav")
         processed_Audio = None
 
         try:
@@ -183,13 +199,13 @@ class videoDownloader:
             print("FFmpeg error:")
             print(e.stderr)
 
-        if os.path.isfile(video_file_path):
+        if path.isfile(video_file_path):
             self.download_label.config(text="Download Complete")
         self.entry_box.delete(0, tk.END)
         self.download_label.config(
             text="Download Complete, Ready to Process another Video"
         )  # Update the label
-        os.remove(video_file_path)
+        remove(video_file_path)
         self.isDownloading = False
         self.loop_times = 0
         return processed_Audio
