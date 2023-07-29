@@ -36,6 +36,9 @@ ClipTone is a simple Python application that allows you to download audio from Y
 - If you don't have 7zip installed, you can download it free from [here](https://www.7-zip.org/). Just select the download that is applicable to your system, and follow the installation process.
 - Depending on the speed of your internet connection and the length of the video you are downloading, the download process may take a while, be patient.
 - You must select a format to download the video in, if you don't, the application will not download the video.
+
+## Special Thanks 💖
+- [@wcgraphicdesign22](https://www.instagram.com/wcgraphicdesign22/) for the logo design
   
 
 <h2 style="color: red;">DISCLAIMER ⚠️</h2>
