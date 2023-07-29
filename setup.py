@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 setup(
     name="ClipTone",
-    version="1.2.2",
+    version="1.2.3",
     description="ClipTone",
     author="Cash E. Coffman",
     author_email="",
@@ -34,6 +34,8 @@ setup(
             "main.py",
             base=base,
             copyright="Cash E. Coffman",
+            shortcut_name="ClipTone",
+            shortcut_dir="DesktopFolder",
             icon="assets/icon.ico",
         )
     ],

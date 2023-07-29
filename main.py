@@ -18,7 +18,7 @@ class videoDownloader:
         tk.Tk.iconbitmap(self.root, default=self.icon)
         self.width = width
         self.title = title
-        self.root.title("Video to Audio Downloader")
+        self.root.title("ClipTone")
         self.root.geometry(f"{self.height}x{self.width}")
 
         # Create a entry box
