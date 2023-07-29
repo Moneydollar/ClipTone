@@ -16,9 +16,9 @@ if sys.platform == "win32":
     base = "Win32GUI"
 
 setup(
-    name="Video to Audio Downloader",
+    name="ClipTone",
     version="1.2.2",
-    description="Simple Python Video Audio Downloader and Converter",
+    description="ClipTone",
     author="Cash E. Coffman",
     author_email="",
     options={

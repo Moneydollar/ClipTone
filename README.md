@@ -1,6 +1,6 @@
-# Video to Audio Downloader
+# ClipTone
 
-Video to Audio Downloader is a simple Python application that allows you to download audio from YouTube videos. You can enter the link of the video you want to download, and the application will convert it to an MP3 audio file.
+ClipTone is a simple Python application that allows you to download audio from YouTube videos. You can enter the link of the video you want to download, and the application will convert it to an MP3 audio file.
 
 ## Features
 
