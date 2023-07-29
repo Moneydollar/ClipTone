@@ -18,13 +18,13 @@ ClipTone is a simple Python application that allows you to download audio from Y
 
 ### Via .7z Folder
 
-- Download the latest release from the [releases page](https://github.com/Moneydollar/Video_to_Audio_Downloader/releases/download/v1.1.2/Video_to_Audio_Downloader_v1.1.2.7z)
+- Download the latest release from the [releases page]((https://github.com/Moneydollar/ClipTone/releases/download/v1.2.3/ClipTone_v1.2.3.7z))
 - Extract the contents of the zip file to a folder of your choice
 - Run the main.exe file
 
 ### Via MSI Installer
 
-- Download from the [releases page](https://github.com/Moneydollar/Video_to_Audio_Downloader/releases/download/v1.1.2/Video.to.Audio.Downloader-1.1.1-win64.msi) and execute the installer
+- Download from the [releases page](https://github.com/Moneydollar/ClipTone/releases/download/v1.2.3/ClipTone-1.2.2-win64.msi) and execute the installer
 - Choose a directory for Video to Audio Downloader to install
 - Finish install
 - Open the file named main.exe via the Windows™️ search bar
