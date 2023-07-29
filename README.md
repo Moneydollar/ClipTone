@@ -38,7 +38,7 @@ ClipTone is a simple Python application that allows you to download audio from Y
 - You must select a format to download the video in, if you don't, the application will not download the video.
 
 ## Special Thanks 💖
-- [@wcgraphicdesign22](https://www.instagram.com/wcgraphicdesign22/) for the logo design
+- [@wcgraphicdesign22](https://www.instagram.com/wcgraphicdesign22/) for the logo design.
   
 
 <h2 style="color: red;">DISCLAIMER ⚠️</h2>
