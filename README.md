@@ -1,4 +1,4 @@
-# ClipTone
+# ClipTone      ![Alt text](assets/icon64.ico)
 
 ClipTone is a simple Python application that allows you to download audio from YouTube videos. You can enter the link of the video you want to download, and the application will convert it to an MP3 audio file.
 
