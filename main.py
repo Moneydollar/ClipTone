@@ -1,11 +1,13 @@
 import tkinter as tk
-import yt_dlp.YoutubeDL
+from tkinter import ttk as tkk
+import yt_dlp
 from os import path, remove
 import ffmpeg
 from subprocess import run
 from threading import Thread  # For multithreading
 
 
+# TODO: ADD STYlING TO THE GUI
 class videoDownloader:
     def __init__(self, height, width, title):
         self.root = tk.Tk()
@@ -28,7 +30,6 @@ class videoDownloader:
         # Create a entry box
         self.entry_box = tk.Entry(self.root, background="#ebe694", font="Helvetica 12")
         self.entry_box.pack(pady=10)
-        
 
         # Create a frame to hold the radio buttons and pack it to the top
         radio_frame = tk.Frame(self.root)
@@ -67,9 +68,27 @@ class videoDownloader:
 
         # Create a Exit Button
 
-        self.exit_button = tk.Button(self.root, text="Exit", command=self.on_closing)
-        self.exit_button.pack(pady=10)
-        self.download_label = tk.Label(self.root, text="Ready to Download")
+        # self.exit_button = tk.Button(self.root, text="Exit", command=self.on_closing)
+        # self.exit_button.pack(pady=10)
+
+        downloadProgressFrame = tk.Frame(self.root, width=300)
+        downloadProgressFrame.configure(background="#f3f3f3")
+        downloadProgressFrame.pack(pady=15, padx=10)
+
+        self.progress_var = tk.DoubleVar()
+        self.progress_bar = tkk.Progressbar(
+            downloadProgressFrame,
+            mode="determinate",
+            variable=self.progress_var,
+            style="TProgressbar",
+        )
+
+        self.progress_bar.pack(
+            fill=tk.X,
+            padx=10,
+            pady=5,
+        )
+        self.download_label = tk.Label(downloadProgressFrame, text="Ready to Download")
         self.download_label.configure(background="#f3f3f3")
         self.download_label.pack(pady=10)
 
@@ -123,6 +142,14 @@ class videoDownloader:
         self.isLossy = True
         pass
 
+    def update_progress_bar(self, data):
+        if data["status"] == "downloading":
+            total_bytes = data.get("total_bytes")
+            downloaded_bytes = data.get("downloaded_bytes")
+            if total_bytes and downloaded_bytes:
+                progress = downloaded_bytes / total_bytes * 100.0
+                self.progress_var.set(progress)
+
     def on_closing(self):
         if self.isDownloading:
             # If downloading is in progress, cancel closing and wait for the download to complete
@@ -139,9 +166,12 @@ class videoDownloader:
         ydl_opts = {"outtmpl": path.join(new_directory, "%(title)s.%(ext)s")}
         ydl = yt_dlp.YoutubeDL(ydl_opts)
         videoLink = self.get_song()
-        ydl.download(
-            [videoLink]
-        )  # Download the video directly, no need to store the result
+
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.add_progress_hook(
+                self.update_progress_bar
+            )  # Register the progress hook
+            ydl.download([videoLink])
 
         videoInfo = ydl.extract_info(videoLink, download=False)
         videoTitle = videoInfo.get("title")
@@ -170,6 +200,7 @@ class videoDownloader:
         remove(video_file_path)
         self.isDownloading = False
         self.loop_times = 0
+        self.progress_var.set(0)
         return processed_Audio
 
     def getLosslessAudio(self):
@@ -178,9 +209,12 @@ class videoDownloader:
         ydl_opts = {"outtmpl": path.join(new_directory, "%(title)s.%(ext)s")}
         ydl = yt_dlp.YoutubeDL(ydl_opts)
         videoLink = self.get_song()
-        ydl.download(
-            [videoLink]
-        )  # Download the video directly, no need to store the result
+
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            ydl.add_progress_hook(
+                self.update_progress_bar
+            )  # Register the progress hook
+            ydl.download([videoLink])
 
         videoInfo = ydl.extract_info(videoLink, download=False)
         videoTitle = videoInfo.get("title")
@@ -208,6 +242,7 @@ class videoDownloader:
         remove(video_file_path)
         self.isDownloading = False
         self.loop_times = 0
+        self.progress_var.set(0)
         return processed_Audio
 
     def run(self):

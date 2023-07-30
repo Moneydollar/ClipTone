@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 setup(
     name="ClipTone",
-    version="1.2.3",
+    version="1.3.3",
     description="ClipTone",
     author="Cash E. Coffman",
     author_email="",
