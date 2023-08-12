@@ -31,7 +31,7 @@ ClipTone is a simple Python application that allows you to download audio from Y
   
 ## Troubleshooting
 
-- Sometimes, the file will download only as a video because the video is not available in a compatible format for the application to download. This is a rare occurrence, but if it happens, you can try to download the video again from a different link.
+- Sometimes, the file will download only as a video because the video is not available in a compatible format for FFmpeg to convert. This is a rare occurrence, but if it happens, you can try to download the video again from a different link.
 - If you encounter issues with the installer or the 7zip method of installation, try the other method of installation, if that fails please submit an issue to this repo.
 - If you don't have 7zip installed, you can download it free from [here](https://www.7-zip.org/). Just select the download that is applicable to your system, and follow the installation process.
 - Depending on the speed of your internet connection and the length of the video you are downloading, the download process may take a while, be patient.
