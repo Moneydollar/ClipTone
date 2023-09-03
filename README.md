@@ -28,6 +28,10 @@ ClipTone is a simple Python application that allows you to download audio from Y
 - Choose a directory for Video to Audio Downloader to install
 - Finish install
 - Open the file named main.exe via the Windows™️ search bar
+
+### Via "main" file
+
+-Download the "main" file and click to run
   
 ## Troubleshooting
 
