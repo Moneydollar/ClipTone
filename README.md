@@ -31,7 +31,7 @@ ClipTone is a simple Python application that allows you to download audio from Y
 
 ### Via "main" file
 
--Download the "main" file and click to run
+- Download the "main" file and click to run
   
 ## Troubleshooting
 
