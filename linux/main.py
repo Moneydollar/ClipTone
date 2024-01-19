@@ -33,6 +33,14 @@ class videoDownloader:
         # Create a entry box
         self.entry_box = tk.Entry(self.root, background="#ebe694", font="Helvetica 12")
         self.entry_box.pack(pady=10)
+        # Create a context menu for the entry box
+        self.entry_context_menu = tk.Menu(self.root, tearoff=0)
+        self.entry_context_menu.add_command(label="Cut", command=self.cut_text)
+        self.entry_context_menu.add_command(label="Copy", command=self.copy_text)
+        self.entry_context_menu.add_command(label="Paste", command=self.paste_text)
+
+        # Bind the context menu to the entry box
+        self.entry_box.bind("<Button-3>", self.show_entry_context_menu)
 
         # Create a frame to hold the radio buttons and pack it to the top
         radio_frame = tk.Frame(self.root)
@@ -94,6 +102,21 @@ class videoDownloader:
         self.download_label = tk.Label(downloadProgressFrame, text="Ready to Download")
         self.download_label.configure(background="#f3f3f3")
         self.download_label.pack(pady=10)
+
+    def show_entry_context_menu(self, event):
+        try:
+            self.entry_context_menu.tk_popup(event.x_root, event.y_root)
+        finally:
+            self.entry_context_menu.grab_release()
+
+    def cut_text(self):
+        self.entry_box.event_generate("<<Cut>>")
+
+    def copy_text(self):
+        self.entry_box.event_generate("<<Copy>>")
+
+    def paste_text(self):
+        self.entry_box.event_generate("<<Paste>>")
 
     def get_song(self):
         song = self.entry_box.get()

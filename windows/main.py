@@ -39,8 +39,6 @@ class videoDownloader:
         # Bind the context menu to the entry box
         self.entry_box.bind("<Button-3>", self.show_entry_context_menu)
 
-        # ... existing code ...
-
         # Create a frame to hold the radio buttons and pack it to the top
         radio_frame = tk.Frame(self.root)
         radio_frame.pack(pady=10)
