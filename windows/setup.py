@@ -3,7 +3,7 @@ from cx_Freeze import setup, Executable
 import os.path
 
 includes = []
-include_files = ["assets/"]
+include_files = [r"C:\Users\cashc\OneDrive\Documents\GitHub\ClipTone\assets"]
 
 # Exclude unnecessary packages
 excludes = ["pydoc_data", "setuptools", "distutils"]
