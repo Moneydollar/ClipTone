@@ -36,7 +36,7 @@ setup(
             copyright="Cash E. Coffman",
             shortcut_name="ClipTone",
             shortcut_dir="DesktopFolder",
-            icon="assets/icon64.ico",
+            icon=r"assets/icon64.ico",
         )
     ],
 )
